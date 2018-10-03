@@ -17,12 +17,15 @@ public class Lobster extends Actor
         // Add your action code here.
         // 모서리에서 회전
         turnAtEdge();
+        
         // 이동하면서 랜덤으로 회전
         randomTurn();
+        
         // 한번에 5씩 움직임
         move(5);
         // Crab과 마주침
         lookForCrab();
+       
     }
     
     /**
@@ -33,6 +36,8 @@ public class Lobster extends Actor
     {
         // 만약 모서리에 있다면
         // 17정도 회전
+        if(isAtEdge())
+            turn(17);
     }
     
     /**
@@ -59,5 +64,11 @@ public class Lobster extends Actor
         // au.wav 음악 재생
         // Oops! 문구 표시
         // Greenfoot.stop();
+        if(isTouching(Crab.class)){
+            removeTouching(Crab.class);
+            Greenfoot.playSound("au.wav");
+            getWorld().showText("Oops!",280,280);
+            Greenfoot.stop();
+        }
     }    
 }
